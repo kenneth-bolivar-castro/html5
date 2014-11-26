@@ -1,8 +1,8 @@
 /* 
- * Angular module for invoice app.
+ * Angular module for my app.
  */
 
-angular.module('myApp', [])
+angular.module('myApp', ['finance'])
         .controller('InvoiceController', function() {
             this.quantity = 1;
             this.cost = 2;
@@ -18,14 +18,38 @@ angular.module('myApp', [])
                 var amount = this.quantity * this.cost;
                 return this.convertCurrency(amount, this.inCurr, outCurr);
             };
-
             this.convertCurrency = function(amount, inCurr, outCurr) {
                 var outForeingCurr = this.usdToForeignRates[outCurr],
                         inForeingCurr = this.usdToForeignRates[inCurr];
                 return ((amount * outForeingCurr) / inForeingCurr);
             };
-
             this.pay = function() {
                 window.alert('Paid!');
             };
-        });
+        })
+        .controller('InvoiceImproveCtrl', ['currencyConverter', function(currencyConverter) {
+                this.quantity = 1;
+                this.cost = 2;
+                this.inCurr = 'EUR';
+                this.currencies = currencyConverter.currencies;
+
+                this.total = function total(outCurr) {
+                    return currencyConverter.convert(this.quantity * this.cost, this.inCurr, outCurr);
+                };
+                this.pay = function pay() {
+                    window.alert("Thanks!");
+                };
+            }])
+        .controller('InvoiceImproveCtrlHttp', ['currencyConverterHttp', function(currencyConverter) {
+                this.quantity = 1;
+                this.cost = 2;
+                this.inCurr = 'EUR';
+                this.currencies = currencyConverter.currencies;
+
+                this.total = function total(outCurr) {
+                    return currencyConverter.convert(this.quantity * this.cost, this.inCurr, outCurr);
+                };
+                this.pay = function pay() {
+                    window.alert("Thanks!");
+                };
+            }]);
