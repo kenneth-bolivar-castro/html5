@@ -28,20 +28,23 @@ and open the template in the editor.
     </head>
     <body ng-app='myApp'>
         <div class='container'>
-            <h1>Titular de la página <span>Informativa</span></h1>
-            <ul>
-                <li><a href='controllers.html'>Controllers</a></li>
-                <li><a href='services.html'>Services</a></li>
-            </ul>
+            <div class='pull-right'>
+                <h1>HTML5 <span>App</span> <small>(Lab)</small></h1>
+                <ul class="list-inline">
+                    <li><a href='controllers.html'>Controllers</a></li>
+                    <li><a href='services.html'>Services</a></li>
+                </ul>
+            </div>
+            <div class='clearfix'></div>
             <hr/>
             <div class='container'>
                 <div class='row'>
                     <div class="col-md-4">
-                        <p id="destacado">ID = destacado - Lorem ipsum dolor sit amet...</p>
+                        <p class='text-capitalize' id="destacado"><abbr title='Identificator'>ID</abbr> = destacado - Lorem ipsum dolor sit amet...</p>
                     </div>
                     <div class="col-md-2 aviso">...</div>
                     <div class="col-md-4">
-                        <p>Nunc sed lacus et <a href="#" class="destacado">est adipiscing</a> accumsan...</p>
+                        <p><mark>Nunc</mark> sed lacus et <a href="#" class="destacado">est adipiscing</a> accumsan...</p>
                         <p>Class aptent taciti <em class="destacado">sociosqu ad</em> litora...</p>
                     </div>
                     <div class="col-md-2"><span class="error">...</span></div>
@@ -54,7 +57,7 @@ and open the template in the editor.
             <div class='container'>
                 <div class='row'>
                     <div class="col-sm-2">
-                        <p>Un párrafo de texto no muy largo.</p>
+                        <p class='text-center'>Un párrafo de texto no muy largo.</p>
                         <p><span><a href="#">Enlace</a></span></p>
                         <p><a href="#">Enlace</a></p>
                     </div>
@@ -64,10 +67,10 @@ and open the template in the editor.
                     </div>
                     <div class="clearfix visible-xs-block"></div>
                     <div class="col-sm-8">
-                        <p>Class aptent taciti sociosqu ad litora...</p>
+                        <p><s>Class aptent taciti sociosqu ad litora...</s></p>
                         <p><font color="gray" face="Verdana" size="2">Un párrafo de texto no muy largo.</font></p>
-                        <p>Tempor ac urna lacus velit augue lorem et magna augue scelerisque, porta dapibus ultricies, pulvinar? Augue porttitor platea, porta odio? Adipiscing eros nec tortor, dis et mattis sed, magna cras, et etiam, sit et cursus vut dignissim scelerisque magnis eros sed mauris tristique nisi lectus eros odio tincidunt eu hac.</p>
-                        <p>Cras et sociis, mus cum montes porttitor cursus aenean. Vel hac pid, elit nunc sit, augue dictumst, odio scelerisque cras aliquam. Porttitor augue porta pellentesque pid enim scelerisque aliquam. Augue et ac? Elementum tortor odio massa cursus eros est aliquet lacus. Porta non est egestas, facilisis duis, ultrices, sit.</p>
+                        <p>Tempor ac urna lacus velit augue <u>lorem et magna augue scelerisque, porta dapibus ultricies, pulvinar?</u> Augue porttitor platea, porta odio? Adipiscing eros nec tortor, dis et mattis sed, magna cras, et etiam, sit et cursus vut dignissim scelerisque magnis eros sed mauris <strong>tristique nisi lectus</strong> eros odio tincidunt eu hac.</p>
+                        <p>Cras et sociis, mus cum <del>montes porttitor cursus aenean</del>. Vel hac pid, elit nunc sit, augue dictumst, odio scelerisque cras aliquam. <small>Porttitor augue porta pellentesque pid enim scelerisque aliquam</small>. Augue et ac? Elementum tortor odio massa <em>cursus eros est aliquet lacus</em>. Porta non est egestas, facilisis duis, ultrices, sit.</p>
                     </div>
                 </div>
             </div>
@@ -77,12 +80,23 @@ and open the template in the editor.
                     <div class="col-sm-4 col-md-offset-8">
                         <label>Name:</label>
                         <input type="text" ng-model="yourName" placeholder="Enter a name here">
-                        <h3 ng-show="yourName">Hello {{yourName}}!</h3>
+                        <blockquote ng-show="yourName"  class="blockquote-reverse">
+                            <p>Hello {{yourName}}!</p>
+                            <footer>AngularJS... <cite title='google.com'>Google INC</cite></footer>
+                        </blockquote>
                     </div>
                 </div>
                 <div class='row'>
-                    <div class="col-sm-2 col-md-offset-4">
-                        <p>Ridiculus diam sagittis sed pulvinar <span>augue est massa.</span></p>
+                    <div class="col-sm-2 text-right">
+                        <address>
+                            <strong>Twitter, Inc.</strong><br>
+                            795 Folsom Ave, Suite 600<br>
+                            San Francisco, CA 94107<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+                    </div>
+                    <div class="col-sm-2 col-md-offset-2">
+                        <p><ins>Ridiculus diam sagittis sed</ins> pulvinar <span>augue est massa.</span></p>
                         <p><span>Texto1</span></p>
                         <p><a href="#"><span>Texto2</span></a></p>
                         <!--ul>
@@ -96,13 +110,16 @@ and open the template in the editor.
             <hr/>
             <div class='container'>
                 <div class='row bg-warning'>
-                    <div class='col-md-2 bg-primary' ng-init="quantity = 1; cost = 2;">
+                    <div class='col-md-2 bg-primary' ng-init="quantity = 1;
+                            cost = 2;">
                         <b>Invoice:</b>
                         <div>Quantity: <input type="number" min="0" ng-model="quantity" /></div>
                         <div>Cost: <input type="number" min="0" ng-model="cost" /></div>
                         <div><strong>Total: </strong>{{ quantity * cost | currency }}</div>
                     </div>
-                    <div ng-controller="InvoiceController as invoice">
+                    <div ng-controller="InvoiceController
+                            as
+                            invoice">
                         <div class='col-md-3 col-md-offset-2'>
                             <b>Invoice (InvoiceController):</b>
                             <div>Quantity: <input type="number" min="0" ng-model="invoice.quantity" required /></div>
@@ -126,7 +143,9 @@ and open the template in the editor.
                 <hr/>
                 <div class='row'>
                     <div class='col-md-6'>
-                        <div class='row bg-info' ng-controller="InvoiceImproveCtrl as invoice">
+                        <div class='row bg-info' ng-controller="InvoiceImproveCtrl
+                                as
+                                invoice">
                             <div class="pull-right">
                                 <b>Invoice (InvoiceImproveCtrl):</b>
                             </div>
@@ -148,7 +167,9 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class='col-md-6'>
-                        <div class='row bg-danger' ng-controller="InvoiceImproveCtrlHttp as invoice">
+                        <div class='row bg-danger' ng-controller="InvoiceImproveCtrlHttp
+                                as
+                                invoice">
                             <b>Invoice (InvoiceImproveCtrlHttp):</b>
                             <div class='col-md-3'>Quantity: <input type="number" min="0" ng-model="invoice.quantity" required /></div>
                             <div class='col-md-3'>Cost: <input type="number" min="0" ng-model="invoice.cost" required />
